@@ -1,33 +1,54 @@
+// java빌드에 필요한 플러그인 설정
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.3.1'
-	id 'io.spring.dependency-management' version '1.1.5'
+	id 'org.springframework.boot' version '2.7.11'
+	// 의존성관리툴 의 버전을 명시
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
 group = 'com.beyond'
+//빌드된 jar파일의 버전명 (이 여기서 결정된다) // snapshot : 실험용 버전
 version = '0.0.1-SNAPSHOT'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
+//	toolchain {
+//		languageVersion = JavaLanguageVersion.of(11)
+//	}
+	sourceCompatibility = '11'
 }
 
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-}
+//configurations {
+//	compileOnly {
+//		extendsFrom annotationProcessor
+//	}
+//}
 
+// 왜 메이븐인가 그래들이라 했는뎅 // 의존성 // ubuntu의 의존성 레포 : apt-get (레파지토리-저장소, 목록)
 repositories {
+	// 의존성을 가져오는 대상 저장소(repository) : 인터넷되어야 끌고와용
+	// 내부망에서 인터넷을 사용하기 불가한 경우엔 nexus(설치형)와 같은 repository를 사용하기도 함 // 문제 : 용량이 큰것도 있지만 업데이트때마다 부어줘야해 시바
 	mavenCentral()
 }
 
+// starter 종속성은 일반적으로 별도의 버전관리가 필요없고, 버전에 따라 호환성을 맞춰줌
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	// 의존성 이거 쓸거야 선언일뿐
+	//DB연결 및 관리를 위한 의존성(라이브러리) : JDBC, IBATIS-MYBATIS(아직도 쓰는데 많아용), JPA, SPRINGDATAJPA
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// CSR(프론트와 서버가 분리) SSR(서버사이드렌더링 스프링플젝 안에 자바, 프론트 다 있어. 화면+데이터까지다줄게!:효율적, 성능 빨라 : 근데 미래가 아니야 왜? 프론트 고도화...LIKE VUE(프레임워크))
+	// 이어서 VUE(화면) + 유저 + 스프링(데이터)
+	// 정리 CSR : 화면과 서버(데이터만) 분리(한거:RESTFUL 아키텍처)
+	//      SSR : 서버안에서 화면까지 렌더링(화면+데이터)
+
+	// 타임리프(템플릿엔진 - JSP, 타임리프 등) 의존성 : 위의 SSR 구성을 위해 이 템플릿 필요
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // starter네~
+	// implementation 키워드는 컴파일 시점과 런타임시점에 모두 필요한 라이브러리임을 명시 / compileOnly + runtimeOnly
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// compileOnly 컴파일 시점에서 필요한 라이브러리임을 명시 / class 파일 만들때부터 참조해서 사용
+	// RunTimeOnly class 파일 x, 최종 jar파일 만들때는 포함
+	// jar 파일 class 파일 + 기타 의존성 묶음 => 실행가능한 상태
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
