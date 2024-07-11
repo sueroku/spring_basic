@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입</title>
 </head>
 <body>
+    <div th:replace="member/header :: headerFragment"></div>
     <h1> 👥 회원가입</h1>
-    <form action="/member/create" method="post"> <!-- 인코딩타입 생략하면 따따따-->
-        <p>이름 : <input type="text" name="name"></p>
-        <p>email : <input type="text" name="email"></p>
-        <p>password : <input type="text" name="password"></p>
-        <p><input type="submit" value="가입완료"></p>
-    </form>
+        <form action="/member/create" method="post"> <!-- 인코딩타입 생략하면 따따따-->
+            <p>이름 : <input type="text" name="name"></p>
+            <p>email : <input type="text" name="email"></p>
+            <p>password : <input type="text" name="password"></p>
+            <p><input type="submit" value="가입완료"></p>
+        </form>
 </body>
 </html>
