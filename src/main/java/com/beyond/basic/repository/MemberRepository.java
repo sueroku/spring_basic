@@ -18,5 +18,4 @@ public interface MemberRepository {
 
     Optional<Member> findById(Long id); // springdatajpa
 
-
 }

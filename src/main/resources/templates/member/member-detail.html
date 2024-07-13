@@ -1,21 +1,96 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    <title>회원상세조회</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div th:replace="member/header :: headerFragment"></div>-->
+<!--    <h1> 👥 회원상세조회</h1>-->
+<!--    <table>-->
+<!--        <tr><th>ID</th><th>이름</th><th>이메일</th><th>비밀번호</th></tr>-->
+<!--        <tr th:each="member : ${member}">-->
+<!--            <td th:text = "${member.id}"></td>-->
+<!--            <td th:text = "${member.name}"></td>-->
+<!--            <td th:text = "${member.email}"></td>-->
+<!--            <td th:text = "${member.password}"></td> &lt;!&ndash;없어도..&ndash;&gt;-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원상세조회</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding-top: 50px; /* 상단 여백 추가 */
+        }
+        .container {
+            text-align: center;
+        }
+        .page-header {
+            margin-bottom: 20px;
+        }
+        .table {
+            margin: 0 auto;
+            width: 50%;
+        }
+        .float-start {
+            text-align: left; /* 버튼을 왼쪽 정렬 */
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block; /* 버튼을 인라인 블록으로 설정 */
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: black;
+        }
+        .navbar .container {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
 </head>
 <body>
-    <div th:replace="member/header :: headerFragment"></div>
-    <h1> 👥 회원상세조회</h1>
-    <table>
-        <tr><th>ID</th><th>이름</th><th>이메일</th><th>비밀번호</th></tr>
-        <tr th:each="member : ${member}">
-            <td th:text = "${member.id}"></td>
-            <td th:text = "${member.name}"></td>
-            <td th:text = "${member.email}"></td>
-            <td th:text = "${member.password}"></td> <!--없어도..-->
-        </tr>
-    </table>
+    <div class="navbar">
+        <div class="container">
+            <div th:replace="member/header :: headerFragment"></div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="page-header"><h1> 👥 회원상세조회</h1></div>
+        <table class="table">
+            <tr><th>ID</th><th>이름</th><th>이메일</th><th>비밀번호</th></tr>
+            <tr th:each="member : ${member}">
+                <td th:text = "${member.id}"></td>
+                <td th:text = "${member.name}"></td>
+                <td th:text = "${member.email}"></td>
+                <td th:text = "${member.password}"></td> <!--없어도..-->
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

@@ -34,10 +34,10 @@ public class MemberController {
 //    @Autowired
 //    private MemberService memberService;
 
-//    의존성 주입(DI) 방법3. 어노테이션(@RequiredArgs)을 이용하는 방식  (요즘 많이 쓰는 방식 이긴 한데 다형서 구현에는 또 안되넹)
-//    @RequiredArgsConstructor @NonNull 어노테이션 , final 키워드가 붙어 있는 필드를 대상으로
+//    의존성 주입(DI) 방법3. 어노테이션(@RequiredArgs)을 이용하는 방식  (요즘 많이 쓰는 방식 이긴 한데 다형성 구현에는 또 안되넹)
+//    @RequiredArgsConstructor // @NonNull 어노테이션 , final 키워드가 붙어 있는 필드를 대상으로
 //    private final MemberService memberService; // 1번하고 같은 결과값을 가진다.
-//    @NonNull // 위에 @RequiredArgs 없으면 노란줄쳐져용 // final 역할이랑 비스읏 // 널값은 안돼용 초기화해세용 하는거
+//    @NonNull // 위에 @RequiredArgs~ 없으면 노란줄쳐져용 // final 역할이랑 비스읏 // 널값은 안돼용 초기화해세용 하는거
 //    private MemberService memberService;
 
 

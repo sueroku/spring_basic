@@ -1,18 +1,89 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    <title>회원가입</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div th:replace="member/header :: headerFragment"></div>-->
+<!--    <h1> 👥 회원가입</h1>-->
+<!--        <form action="/member/create" method="post"> &lt;!&ndash; 인코딩타입 생략하면 따따따&ndash;&gt;-->
+<!--            <p>이름 : <input type="text" name="name"></p>-->
+<!--            <p>email : <input type="text" name="email"></p>-->
+<!--            <p>password : <input type="text" name="password"></p>-->
+<!--            <p><input type="submit" value="가입완료"></p>-->
+<!--        </form>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding-top: 50px; /* 상단 여백 추가 */
+        }
+        .container {
+            text-align: center;
+        }
+        .page-header {
+            margin-bottom: 20px;
+        }
+        .table {
+            margin: 0 auto;
+            width: 100%;
+        }
+        .btn {
+            display: inline-block; /* 버튼을 인라인 블록으로 설정 */
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: black;
+        }
+        .navbar .container {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
 </head>
 <body>
-    <div th:replace="member/header :: headerFragment"></div>
-    <h1> 👥 회원가입</h1>
-        <form action="/member/create" method="post"> <!-- 인코딩타입 생략하면 따따따-->
-            <p>이름 : <input type="text" name="name"></p>
-            <p>email : <input type="text" name="email"></p>
-            <p>password : <input type="text" name="password"></p>
-            <p><input type="submit" value="가입완료"></p>
-        </form>
+    <div class="navbar">
+        <div class="container">
+        <div th:replace="member/header :: headerFragment"></div>
+        </div>
+    </div>
+    <br>
+    <form action="http://localhost:8080/member/create" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="container">
+            <div class="page-header"><h1> 👥 회원가입</h1></div>
+                <form  class="table" action="/member/create" method="post"> <!-- 인코딩타입 생략하면 따따따-->
+                    <p>이름 : <input type="text" class="form-control" name="name" ></p>
+                    <p>email : <input type="email" class="form-control" name="email"></p>
+                    <p>password : <input type="password" class="form-control" name="password"></p>
+                    <p><button type="submit" class="btn btn-success">가입완료</button></p>
+                </form>
+        </div>
+    </form>
 </body>
 </html>

@@ -17,13 +17,12 @@ import java.util.Optional;
 
 //       input값의 검증 및 실질적인 비지니스 로직은 서비스 계층에서 수행
 @Service // 서비스 계층임을 표현함과 동시에 싱글톤 객체로 생성
-@Transactional // Transca~ 어노테이션을 통해 모든 메서드에 트랜잭션을 적용하고,(각 메서드 마다 하나의 트랜잭션으로 묶는다는 뜻))
-//만약 에러가 발생시 롤백처리 자동화
+@Transactional // Transca~ 어노테이션을 통해 모든 메서드에 트랜잭션을 적용하고,(각 메서드 마다 하나의 트랜잭션으로 묶는다는 뜻)) //만약 에러가 발생시 롤백처리 자동화
 public class MemberService {
 
 
 //    다형성으로 가자
-//    private final MemberRepository memberRepository; // final : 두번 할당이 안되용 // repo 어노테이션 없이 이 경우 생성자에 new로 객체 만들어야한다.
+//    private final MemberRepository memberRepository; // final : 두번 할당이 안되용 // 레포파일에 Repo~ 어노테이션 없이 이 경우 생성자에 new로 객체 만들어야한다.
 //
 //    @Autowired // 싱글톤 객체를 주입 (DepencyInjection 의존성 주입=객체를주입) 받는다라는 것을 의미
 //    public MemberService(MemberJpaRepository memoryRepository){  // MemberJpaRepo~~ 부분 바꾸면 나머지 레포 작업들 가능
@@ -35,7 +34,7 @@ public class MemberService {
     @Autowired // 싱글톤 객체를 주입 (DepencyInjection 의존성 주입=객체를주입) 받는다라는 것을 의미
     public MemberService(MemberSpringDataRepository mRepository){  // MemberJpaRepo~~ 부분 바꾸면 나머지 레포 작업들 가능
         this.memberRepository =  mRepository;
-    } // 여기까지 다형성
+    } // 다형성 연습하던거.
 
 
 //     비다형성설계
