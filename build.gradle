@@ -35,10 +35,13 @@ dependencies {
 	// 의존성 이거 쓸거야 선언일뿐
 	//DB연결 및 관리를 위한 의존성(라이브러리) : JDBC, IBATIS-MYBATIS(아직도 쓰는데 많아용), JPA, SPRINGDATAJPA
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
 //	mariadb클라이언트 추가    mariadb connection 의존성
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
+//	mybatis 관련 의존성 추가
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
 
 	// CSR(프론트와 서버가 분리) SSR(서버사이드렌더링 스프링플젝 안에 자바, 프론트 다 있어. 화면+데이터까지다줄게!:효율적, 성능 빨라 : 근데 미래가 아니야 왜? 프론트 고도화...LIKE VUE(프레임워크))
 	// 이어서 VUE(화면) + 유저 + 스프링(데이터)

@@ -1,14 +1,30 @@
-# .properties ? ????? ?? ?? (ex. spring.application.name=basic    datasource.??? = ???    datasource.???=???)
-# .yml or .yaml ? ?? ???? ???? ??
+# .properties 는 계층구조의 중복 발생 (ex. spring.application.name=basic    datasource.어찌구 = 어찌구    datasource.저찌구=저찌구)
+# .yml or .yaml 을 통해 들여쓰기 계층구조 사용
 
-# port ?? ???  // (local) default ? 8080 ???..
+# port 번호 변경시  // (local) default 는 8080 인데에..
 #server:
-#  port: 8081    # ?? ??? port kill
+#  port: 8081    # 만약 안되면 port kill
 
-# ???? ???? ??
+# 필요하면 가져다가 쓰쇼
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/basic
     username: root
-    password: 1234 # ????..? .gitignore??..? ????? ???? ????~ ??? ?????(????? ????? ??)? ?? ?? ?? ?????~
+    password: 1234 # 깃헙에는..? .gitignore에는..? 이런정보들 여기서는 삭제하고~ 나중에 쿠버네티스(시스템에서 비밀번호를 입력)를 알게 되면 그때 설명해줄께~
+  jpa:
+    database: mysql
+#    innoDB 사용 설정 // 마이아쌈-트랜잭션 처리가 안된다.
+    database-platform: org.hibernate.dialect.MariaDBDialect
+#    테이블은 생성해주나, 스키마는 반드시 사전에 생성 필요.
+    generate-ddl: true
+#    jpa는 인터페이스고, hiber~는 구현체(실질적 기능 구현(되어있는곳(사실상 jpa=hibeer~)))다
+    hibernate:
+#      create 옵션은 매번 table을 drop 후 재생성 # 플젝 초반에 나름 유용. 디비 확정전에 이리저리 해보면서~
+#      update 옵션은 변경사항만 alter를 적용하고 기존의 데이터 유지 : 변경사항 중에 주로 추가 사항만을 반영하고, 삭제나 수정사항은 반영안되는 경우도 있음. 그럴 경우에는 디비에서 직접 바꿔라.(alter) // 실무
+#      validaste는 실제 DB와의 차이만을 check  // 실무(in dba 존재) # 코드(디비관련(member클래스 필드에 변수 추가시))에 변경사항 존재하면 아예 error 뜬다. db에서 alter로 직접 수정
+      ddl-auto: update
+#      콘솔창에 ddl, dml문을 출력하여 보여주는 옵션 // 모든 로그가 다 찍히는 거니 파일차지한다. 나중에는 false로 둬라.
+    show-sql: true
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml

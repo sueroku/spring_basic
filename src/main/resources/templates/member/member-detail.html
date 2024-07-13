@@ -8,5 +8,14 @@
 <body>
     <div th:replace="member/header :: headerFragment"></div>
     <h1> 👥 회원상세조회</h1>
+    <table>
+        <tr><th>ID</th><th>이름</th><th>이메일</th><th>비밀번호</th></tr>
+        <tr th:each="member : ${member}">
+            <td th:text = "${member.id}"></td>
+            <td th:text = "${member.name}"></td>
+            <td th:text = "${member.email}"></td>
+            <td th:text = "${member.password}"></td> <!--없어도..-->
+        </tr>
+    </table>
 </body>
 </html>

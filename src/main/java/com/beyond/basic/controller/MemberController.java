@@ -1,6 +1,7 @@
 package com.beyond.basic.controller;
 
 import com.beyond.basic.domain.Member;
+import com.beyond.basic.domain.MemberDetResDto;
 import com.beyond.basic.domain.MemberReqDto;
 import com.beyond.basic.domain.MemberResDto;
 import com.beyond.basic.service.MemberService;
@@ -57,9 +58,17 @@ public class MemberController {
     }
 
 //    회원 상세 조회    url(urli) : member/1, member/2   화면명 : member-detail
-    @GetMapping("/member/{id}")
+    @GetMapping("/member/detail/{id}")
 //    int 또는 long 으로 받는 경우 스프링에서 알아서 형변환(String->Long)
-    public String memberDetail(@PathVariable Long id){ // String 이 아니라 Long(long아닌 이유 wrapper가 주는 기능이 많다.)인 이유 (윗줄)
+    public String memberDetail(@PathVariable Long id, Model model){ // String 이 아니라 Long(long아닌 이유 wrapper가 주는 기능이 많다.)인 이유 (윗줄)
+//        MemberResDto memberResDto = memberService.memberDetail(id);
+//        model.addAttribute("member", memberResDto);
+//        Member member = memberService.memberDetail(id);
+//        model.addAttribute("member", member);
+
+        MemberDetResDto memberDetResDto = memberService.memberDetail(id);
+        model.addAttribute("member", memberDetResDto);
+
         return "member/member-detail";
     }
 
@@ -83,7 +92,7 @@ public class MemberController {
             memberService.memberCreate(dto);
 //        return "/member/member-list"; // 이건 데이터 빠진 상태로 화면만
 //        화면 리턴이 아닌 url 재호출
-            return "redirect:/member/list";
+            return "redirect:/member/list"; //detail/" + member.getId();
         }catch (IllegalArgumentException e){ // 서비스에서 Illegal로 던졌으니(그런식으로 예외던지는거 중요해 디비 저장전에) 여기서도 일리갈로 받아야해
             model.addAttribute("error", e.getMessage());
             return "member/member-error";

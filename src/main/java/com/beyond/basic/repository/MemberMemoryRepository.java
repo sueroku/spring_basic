@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository // 해당 클래스가 Repository계층임을 표현함과 동시에 싱글톤객체로 (어딘가에)생성
 public class MemberMemoryRepository implements MemberRepository{
@@ -21,12 +22,12 @@ public class MemberMemoryRepository implements MemberRepository{
     }
 
     @Override
-    public List<Member> findall() {
+    public List<Member> findAll() {
         return memberList;
     }
 
     @Override
-    public Member findById(Long id) {
+    public Optional<Member> findById(Long id) {
         return null;
     }
 }
