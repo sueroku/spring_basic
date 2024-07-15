@@ -23,11 +23,11 @@ import java.util.List;
 public class MemberController {
 //    의존성 주입(DI) 방법1. 생성자 주입방식 (가장많이 사용하는 방식)
 //    장점 : 1) final(초기화 필요)을 통해 상수로 사용 가능(재할당 불가능-안정성올라감)   2) 다형성 구현 가능(인터페이스기반개발이 좋다)    3) 순환참조방지(중요도는 조금 떨어짐 다른 방식도 해줘서) :
-
+// 생성자가 1개밖에 없을 때에는 Autowired 생략가능
     private final MemberService memberService; //service 어노테이션 없이 이 경우 생성자에 new로 객체 만들어야한다.
     @Autowired
     public MemberController(MemberService memberService){
-        this.memberService=memberService;
+        this.memberService = memberService;
     }
 
 //    의존성 주입(DI) 방법2. 필드주입 방식 (Autowired만 사용) -이렇게도 많이 쓴다. 위에거랑 거의 동일 그러나 final 못붙여용 왜? 초기화 못해서 그렇다면 재할당 가능하네용? 안정성이 떨어지네용

@@ -23,7 +23,7 @@ spring:
 #      create 옵션은 매번 table을 drop 후 재생성 # 플젝 초반에 나름 유용. 디비 확정전에 이리저리 해보면서~
 #      update 옵션은 변경사항만 alter를 적용하고 기존의 데이터 유지 : 변경사항 중에 주로 추가 사항만을 반영하고, 삭제나 수정사항은 반영안되는 경우도 있음. 그럴 경우에는 디비에서 직접 바꿔라.(alter) // 실무
 #      validaste는 실제 DB와의 차이만을 check  // 실무(in dba 존재) # 코드(디비관련(member클래스 필드에 변수 추가시))에 변경사항 존재하면 아예 error 뜬다. db에서 alter로 직접 수정
-      ddl-auto: update
+      ddl-auto:  update #create
 #      콘솔창에 ddl, dml문을 출력하여 보여주는 옵션 // 모든 로그가 다 찍히는 거니 파일차지한다. 나중에는 false로 둬라.
     show-sql: true
 mybatis:

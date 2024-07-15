@@ -83,12 +83,13 @@
     <div class="container">
         <div class="page-header"><h1> 👥 회원상세조회</h1></div>
         <table class="table">
-            <tr><th>ID</th><th>이름</th><th>이메일</th><th>비밀번호</th></tr>
+            <tr><th>ID</th><th>이름</th><th>이메일</th><th>비밀번호</th><th>생성시간</th></tr>
             <tr th:each="member : ${member}">
                 <td th:text = "${member.id}"></td>
                 <td th:text = "${member.name}"></td>
                 <td th:text = "${member.email}"></td>
                 <td th:text = "${member.password}"></td> <!--없어도..-->
+                <td th:text = "${member.createdTime}"></td>
             </tr>
         </table>
     </div>
