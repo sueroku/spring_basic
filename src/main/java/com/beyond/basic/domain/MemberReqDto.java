@@ -19,8 +19,8 @@ public class MemberReqDto {
     // Dto에서 entity로 전환
     // 추후에는 빌더패턴으로 변환
     public Member toEntity(){
-        Member member = new Member(this.name, this.email, this.password);
-        return member;
+//        Member member = new Member(this.name, this.email, this.password);
+        return new Member(this.name, this.email, this.password);
     }
 
 

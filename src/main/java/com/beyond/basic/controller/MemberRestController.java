@@ -23,10 +23,10 @@ public class MemberRestController {
     }
 
     @GetMapping("/member/list")
-    public List<MemberResDto> memberList(Model model){
-        List<MemberResDto> memberList = memberService.memberList();
+    public List<MemberResDto> memberList(){
+//        List<MemberResDto> memberList = memberService.memberList();
 //        model.addAttribute("memberList", memberList);
-        return memberList;
+        return memberService.memberList();
     }
 
     @GetMapping("/member/detail/{id}")
