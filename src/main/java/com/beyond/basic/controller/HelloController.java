@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller // 해당 클래스가 컨트롤러(사용자의 요청을 처리하고 응답하는 편의기능)임을 명시
@@ -25,6 +28,14 @@ public class HelloController {
 //        return "helloworld"; // (경우a) html파일이름이랑 리턴스트링이랑 같아야해
         return "hello world";
     }
+
+//// 아래와 같이 Controller에서도 HttpServletRequest를 주입받아 사용 가능 // 직접 원하는걸 꺼내 쓰기 위해
+//    public String helloWorld(HttpServletRequest request){
+//        System.out.println(request.getSession());
+//        System.out.println(request.getHeader("Cookie"));
+//        return "hello world";
+//    }
+
 
 
 //    case3 : 사용자가 json 데이터 요청 (get)
@@ -265,6 +276,15 @@ public class HelloController {
         return "ok";
     }
 
+
+//    빌더패턴 실습
+    public void helloBuilderTeat(){
+        Hello hello = Hello.builder()
+                .name("미쳐")
+                .password("대박사건 너무 신기해")
+                .email("진짜 머리 좋은 사람들 너무 많아") // 매개변수명이나 안넣거나(null) 순서나 상관없이 만들어..!
+                .build(); // 근데 not null 이런 조건들은 어케 해결해? 디비에서? 안돼 너무 늦어.. 성능 떨어져.. 앞단에서 해결해라...
+    }
 
 }
 

@@ -5,11 +5,13 @@ import com.beyond.basic.domain.PostResDto;
 import com.beyond.basic.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+//@Transactional(readOnly = true) // 조회성능향상
 public class PostService {
 
     private final PostRepository postRepository;

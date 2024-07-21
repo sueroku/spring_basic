@@ -1,6 +1,5 @@
 package com.beyond.basic.service;
 
-import com.beyond.basic.controller.MemberController;
 import com.beyond.basic.domain.*;
 import com.beyond.basic.repository.NewMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +7,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 //       input값의 검증 및 실질적인 비지니스 로직은 서비스 계층에서 수행
 @Service // 서비스 계층임을 표현함과 동시에 싱글톤 객체로 생성
-@Transactional // Transca~ 어노테이션을 통해 모든 메서드에 트랜잭션을 적용하고,(각 메서드 마다 하나의 트랜잭션으로 묶는다는 뜻)) //만약 에러가 발생시 롤백처리 자동화
+@Transactional (readOnly = true) // 조회성능향상 // 많이들 이렇게 한디야 근데 유난히 트랜잭션 롤백 처리가 필요한메서드에 붙이는 것도 효율적이야
+// Transca~ 어노테이션을 통해 모든 메서드에 트랜잭션을 적용하고,(각 메서드 마다 하나의 트랜잭션으로 묶는다는 뜻))
+// ==> 만약 에러가 발생시 롤백처리 자동화
 public class MemberService {
 
 
@@ -55,15 +55,62 @@ public class MemberService {
 //    private MemberController memberController;
 
 
-    @Transactional
+
+
+
+
+
+
+
     public void memberCreate(MemberReqDto dto){
         if(dto.getPassword().length()<=8){
             throw new IllegalArgumentException("비밀번호가 너무 짧습니다.");
-//            System.out.println("짧기는 개뿔!");
         }
+        if(memberRepository.findByEmail(dto.getEmail()).isPresent()){
+            throw new IllegalArgumentException("이미 존재하는 email입니다.");
+        }
+
         Member member = dto.toEntity();
         memberRepository.save(member);
+
     }
+
+//
+//    public MemberReqDto memberCreate(MemberReqDto dto){
+//        if(dto.getPassword().length()<=8){
+//            throw new IllegalArgumentException("비밀번호가 너무 짧습니다.");
+////            System.out.println("짧기는 개뿔!");
+//        }
+//        Member member = dto.toEntity();
+//        memberRepository.save(member);
+//        return dto;
+//    }
+
+////    @Transactional //
+//    public void memberCreate(MemberReqDto dto){
+//        if(dto.getPassword().length()<=8){
+//            throw new IllegalArgumentException("비밀번호가 너무 짧습니다.");
+////            System.out.println("짧기는 개뿔!");
+//        }
+//        Member member = dto.toEntity();
+////        memberRepository.save(member);
+//
+//
+//
+//        if(member.getName().equals("kim")){
+//            throw  new IllegalArgumentException("예외입니다");
+//        }
+//        memberRepository.save(member);
+////        @Transactional(메서드든, 클래스든 어디에든 붇을때) 롤백처리 테스트 걍 다시 해봐 == 있으면 예외던지고 디비에 저장안된다. 없으면 예외는 던져지면서 디비에 저장된다.
+//        if(member.getName().equals("kim")){
+//            throw  new IllegalArgumentException("예외입니다");
+//        } // 저장 전에 있어야 맞지 않니...?
+//
+//
+//    }
+
+
+
 
     public MemberDetResDto memberDetail(Long id){ // MemberResDto // Member
 //        MemberResDto memberResDto = new MemberResDto();

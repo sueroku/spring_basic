@@ -21,7 +21,7 @@ import java.util.List;
 @Entity // Entity어노테이션을 통해 엔티티매니저에게 객체관리를 위임 // 해당 클래스명으로 테이블 및 컬럼을 자동생성하고, 각종 설정정보 위임 // jpa에게 네가 관리해야하는 클래스(엔티티-테이블(없으면 만들어))얌 이라고 알려줘야해
 //@AllArgsConstructor // 모든 매개변수에 대한 생성자 // 쓸거면 아래도 같이 써
 @NoArgsConstructor // 기본 생성자는 JPA에서 필수
-public class Member {
+public class Member extends BasicEntity{
     @Id // PK설정, 필수값
 //    identity : auto-increament 설정
 //    auto : jpa 자동으로 적절한 전략을 선택하도록 맡기는 것.
@@ -40,10 +40,10 @@ public class Member {
 
 
 
-    @CreationTimestamp //  DB에는 current_timestamp가 생성되지 않음
-    private LocalDateTime createdTime; // 캐멀케이스 사용시 DB에는 _(언더바) 로 생성
-    @UpdateTimestamp
-    private LocalDateTime updateTime; //
+//    @CreationTimestamp //  DB에는 current_timestamp가 생성되지 않음
+//    private LocalDateTime createdTime; // 캐멀케이스 사용시 DB에는 _(언더바) 로 생성
+//    @UpdateTimestamp
+//    private LocalDateTime updateTime; //
 
     public Member(String name, String email, String password){
         this.name = name;
