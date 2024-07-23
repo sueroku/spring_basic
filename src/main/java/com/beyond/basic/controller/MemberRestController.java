@@ -44,27 +44,39 @@ public class MemberRestController {
 
     @GetMapping("/member/detail/{id}")
     public ResponseEntity<Object> memberDetail(@PathVariable Long id){
-        try {
+
+
             MemberDetResDto memberDetResDto = memberService.memberDetail(id);
             CommonResDto commonResDto = new CommonResDto(HttpStatus.OK, "member is successfully referred", memberDetResDto);
             return new ResponseEntity<>(commonResDto,HttpStatus.OK);
-        }catch (EntityNotFoundException e){
-            CommonErrorDto errorDto = new CommonErrorDto(HttpStatus.NOT_FOUND,e.getMessage());
-            return new ResponseEntity<>(errorDto, HttpStatus.NOT_FOUND);
-        }
+
+
+//        try {
+//            MemberDetResDto memberDetResDto = memberService.memberDetail(id);
+//            CommonResDto commonResDto = new CommonResDto(HttpStatus.OK, "member is successfully referred", memberDetResDto);
+//            return new ResponseEntity<>(commonResDto,HttpStatus.OK);
+//        }catch (EntityNotFoundException e){
+//            CommonErrorDto errorDto = new CommonErrorDto(HttpStatus.NOT_FOUND,e.getMessage());
+//            return new ResponseEntity<>(errorDto, HttpStatus.NOT_FOUND);
+//        }
     }
 
     @PostMapping("/member/create")
     public ResponseEntity<Object> memberCreatePost(@RequestBody MemberReqDto dto){
-        try {
+
             memberService.memberCreate(dto);
-//            CommonResDto commonResDto = new CommonResDto(HttpStatus.CREATED, "member is successfully created", memberReqDto);
             CommonResDto commonResDto = new CommonResDto(HttpStatus.CREATED, "member is successfully created", null); // null 도 객체니까 괜찮아!
             return new ResponseEntity<>(commonResDto,HttpStatus.CREATED);
-        }catch (IllegalArgumentException e){
-            CommonErrorDto errorDto = new CommonErrorDto(HttpStatus.BAD_REQUEST,e.getMessage());
-            return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
-        }
+
+//        try {
+//            memberService.memberCreate(dto);
+////            CommonResDto commonResDto = new CommonResDto(HttpStatus.CREATED, "member is successfully created", memberReqDto);
+//            CommonResDto commonResDto = new CommonResDto(HttpStatus.CREATED, "member is successfully created", null); // null 도 객체니까 괜찮아!
+//            return new ResponseEntity<>(commonResDto,HttpStatus.CREATED);
+//        }catch (IllegalArgumentException e){
+//            CommonErrorDto errorDto = new CommonErrorDto(HttpStatus.BAD_REQUEST,e.getMessage());
+//            return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
+//        }
     }
 
 

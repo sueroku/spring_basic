@@ -128,10 +128,10 @@ public class MemberService {
         Member member = optMember.orElseThrow(()->new EntityNotFoundException("없는 회원 입니다."));
 //        MemberDetResDto memberDetResDto = member.detFromEntity();
 
-        System.out.println("글쓴이의 쓴 글의 개수" + member.getPosts().size());
-        for(Post p : member.getPosts()){
-            System.out.println("글의 제목" + p.getTitle());
-        }
+//        System.out.println("글쓴이의 쓴 글의 개수" + member.getPosts().size());
+//        for(Post p : member.getPosts()){
+//            System.out.println("글의 제목" + p.getTitle());
+//        }
 
 //        memberDetResDto.setId(member.getId());
 //        memberDetResDto.setName(member.getName());
